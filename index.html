@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+ 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+ 	<style>
+                p { width: 460px; margin-left: 40px; margin-bottom: 50px;}
+ 	</style>
+ <script>
+        var scrolling = {};
+        scrolling.a = {};
+	scrolling.a.loading = false;
+        scrolling.a.pg = 1;
+	scrolling.a.load = function (anchor) {
+                if (scrolling.a.loading) {    
+                        return;
+                }
+                scrolling.a.loading = true;
+                scrolling.a.ajax();
+	};
+        
+        scrolling.a.ajax = function () {
+                $('#next-link').html('Loading...');
+                $.ajax({
+                        type: 'POST',
+                        url: 'content.php',
+                        data: "query=test&pg=" + scrolling.a.pg,
+                        success: function (response) {
+                                if (response) { 
+                                        $("#content").append(response);
+                                        $('#next-link').attr('href', 'page.html?pg=' + scrolling.a.pg);
+                                        window.location.hash = 'pg=' + scrolling.a.pg;
+                                        scrolling.a.pg= scrolling.a.pg + 1; 
+                                        scrolling.a.loading = false;
+                                } 
+                        }
+                });
+        }  
+        
+        $(window).scroll(function () {
+                try {
+                        var dif = $("#next-link").offset().top - $(window).scrollTop() - $(window).height();
+                        if (dif < 500) {
+                                setTimeout(function () {
+                                        $("#next-link").click();
+                                }, 10);
+                        }
+                } catch(e) {
+                    //console.log('----');
+                }
+        });
+ </script>
+
+ </head>
+ <body>
+     <div id="content">
+ 	<p>
+ 		<img src='http://placehold.it/160x320' align='left' />
+ 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla ante turpis, tincidunt vel interdum et, vehicula 
+                quis metus. Curabitur volutpat bibendum tempor. In et dui 
+                risus, nec iaculis tortor. Suspendisse mauris odio, luctus 
+                vitae molestie id, vehicula sit amet purus. Nullam sed nulla 
+                justo. Vivamus non elit non mauris ultricies suscipit a in 
+                velit. Fusce dictum faucibus feugiat. Nulla auctor lectus 
+                elit. Vivamus augue massa, aliquet eu adipiscing vitae, 
+                placerat sed dui. Proin diam leo, hendrerit ut scelerisque 
+                nec, laoreet quis odio. Etiam a quam scelerisque quam sagittis 
+                euismod. Morbi ut massa purus, sit amet congue elit. Mauris 
+                dapibus sollicitudin nisi, sed tincidunt diam feugiat ut. 
+                Proin pretium, neque et gravida congue, dolor velit interdum 
+                nibh, vitae dignissim sapien quam quis lacus. Vivamus varius 
+                tellus ut nibh ullamcorper aliquam. 
+ 	</p>
+        <p>
+ 		<img src='http://placehold.it/160x320' align='left' />
+ 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla ante turpis, tincidunt vel interdum et, vehicula 
+                quis metus. Curabitur volutpat bibendum tempor. In et dui 
+                risus, nec iaculis tortor. Suspendisse mauris odio, luctus 
+                vitae molestie id, vehicula sit amet purus. Nullam sed nulla 
+                justo. Vivamus non elit non mauris ultricies suscipit a in 
+                velit. Fusce dictum faucibus feugiat. Nulla auctor lectus 
+                elit. Vivamus augue massa, aliquet eu adipiscing vitae, 
+                placerat sed dui. Proin diam leo, hendrerit ut scelerisque 
+                nec, laoreet quis odio. Etiam a quam scelerisque quam sagittis 
+                euismod. Morbi ut massa purus, sit amet congue elit. Mauris 
+                dapibus sollicitudin nisi, sed tincidunt diam feugiat ut. 
+                Proin pretium, neque et gravida congue, dolor velit interdum 
+                nibh, vitae dignissim sapien quam quis lacus. Vivamus varius 
+                tellus ut nibh ullamcorper aliquam. 
+ 	</p>
+        <p>
+ 		<img src='http://placehold.it/160x320' align='left' />
+ 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla ante turpis, tincidunt vel interdum et, vehicula 
+                quis metus. Curabitur volutpat bibendum tempor. In et dui 
+                risus, nec iaculis tortor. Suspendisse mauris odio, luctus 
+                vitae molestie id, vehicula sit amet purus. Nullam sed nulla 
+                justo. Vivamus non elit non mauris ultricies suscipit a in 
+                velit. Fusce dictum faucibus feugiat. Nulla auctor lectus 
+                elit. Vivamus augue massa, aliquet eu adipiscing vitae, 
+                placerat sed dui. Proin diam leo, hendrerit ut scelerisque 
+                nec, laoreet quis odio. Etiam a quam scelerisque quam sagittis 
+                euismod. Morbi ut massa purus, sit amet congue elit. Mauris 
+                dapibus sollicitudin nisi, sed tincidunt diam feugiat ut. 
+                Proin pretium, neque et gravida congue, dolor velit interdum 
+                nibh, vitae dignissim sapien quam quis lacus. Vivamus varius 
+                tellus ut nibh ullamcorper aliquam. 
+ 	</p>
+
+ 	<p>
+ 		<img src='http://placehold.it/160x320' align='left' />
+ 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla ante turpis, tincidunt vel interdum et, vehicula 
+                quis metus. Curabitur volutpat bibendum tempor. In et dui 
+                risus, nec iaculis tortor. Suspendisse mauris odio, luctus 
+                vitae molestie id, vehicula sit amet purus. Nullam sed nulla 
+                justo. Vivamus non elit non mauris ultricies suscipit a in 
+                velit. Fusce dictum faucibus feugiat. Nulla auctor lectus 
+                elit. Vivamus augue massa, aliquet eu adipiscing vitae, 
+                placerat sed dui. Proin diam leo, hendrerit ut scelerisque 
+                nec, laoreet quis odio. Etiam a quam scelerisque quam sagittis 
+                euismod. Morbi ut massa purus, sit amet congue elit. Mauris 
+                dapibus sollicitudin nisi, sed tincidunt diam feugiat ut. 
+                Proin pretium, neque et gravida congue, dolor velit interdum 
+                nibh, vitae dignissim sapien quam quis lacus. Vivamus varius 
+                tellus ut nibh ullamcorper aliquam. 
+ 	</p>
+
+ 	<p>
+ 		<img src='http://placehold.it/160x320' align='left' />
+ 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla ante turpis, tincidunt vel interdum et, vehicula 
+                quis metus. Curabitur volutpat bibendum tempor. In et dui 
+                risus, nec iaculis tortor. Suspendisse mauris odio, luctus 
+                vitae molestie id, vehicula sit amet purus. Nullam sed nulla 
+                justo. Vivamus non elit non mauris ultricies suscipit a in 
+                velit. Fusce dictum faucibus feugiat. Nulla auctor lectus 
+                elit. Vivamus augue massa, aliquet eu adipiscing vitae, 
+                placerat sed dui. Proin diam leo, hendrerit ut scelerisque 
+                nec, laoreet quis odio. Etiam a quam scelerisque quam sagittis 
+                euismod. Morbi ut massa purus, sit amet congue elit. Mauris 
+                dapibus sollicitudin nisi, sed tincidunt diam feugiat ut. 
+                Proin pretium, neque et gravida congue, dolor velit interdum 
+                nibh, vitae dignissim sapien quam quis lacus. Vivamus varius 
+                tellus ut nibh ullamcorper aliquam. 
+ 	</p>
+
+ 	<p>
+ 		<img src='http://placehold.it/160x320' align='left' />
+ 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nulla ante turpis, tincidunt vel interdum et, vehicula 
+                quis metus. Curabitur volutpat bibendum tempor. In et dui 
+                risus, nec iaculis tortor. Suspendisse mauris odio, luctus 
+                vitae molestie id, vehicula sit amet purus. Nullam sed nulla 
+                justo. Vivamus non elit non mauris ultricies suscipit a in 
+                velit. Fusce dictum faucibus feugiat. Nulla auctor lectus 
+                elit. Vivamus augue massa, aliquet eu adipiscing vitae, 
+                placerat sed dui. Proin diam leo, hendrerit ut scelerisque 
+                nec, laoreet quis odio. Etiam a quam scelerisque quam sagittis 
+                euismod. Morbi ut massa purus, sit amet congue elit. Mauris 
+                dapibus sollicitudin nisi, sed tincidunt diam feugiat ut. 
+                Proin pretium, neque et gravida congue, dolor velit interdum 
+                nibh, vitae dignissim sapien quam quis lacus. Vivamus varius 
+                tellus ut nibh ullamcorper aliquam. 
+ 	</p>
+    </div> 
+    
+    <a id="next-link" href="omerload.php?pg=1" onclick="scrolling.a.load(this);return false">Daha Fazla Goster</a>
+	 
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div>---</div>
+</body>
+</html>
+
+
+
+
